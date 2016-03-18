@@ -4,6 +4,10 @@
 from __future__ import print_function
 from setuptools import setup
 import re
+import sys
+
+if sys.version_info[0]<3:
+    raise RuntimeError("Python >=3 required.")
 
 
 with open('encrypted_fields/__init__.py', 'r') as init_file:
@@ -15,7 +19,7 @@ with open('encrypted_fields/__init__.py', 'r') as init_file:
 
 
 setup(
-    name='django-encrypted-fields',
+    name='django-encrypted-fields-python3',
     description=(
         'This is a collection of Django Model Field classes '
         'that are encrypted using Keyczar.'
@@ -28,6 +32,6 @@ setup(
     version=version,
     install_requires=[
         'Django>=1.4',
-        'python-keyczar>=0.71c',
+        'python3-keyczar>=0.71c',
     ],
 )
