@@ -182,7 +182,8 @@ class EncryptedFieldMixin(object):
         if value is None or value == '' or self.decrypt_only:
             return value
 
-        value = str(value)
+        if not isinstance(value, bytes):
+            value = str(value)
 
         return self.prefix + self.crypter().encrypt(value)
 
