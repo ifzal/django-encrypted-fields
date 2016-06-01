@@ -174,7 +174,10 @@ class EncryptedFieldMixin(object):
         except UnicodeEncodeError:
             pass
 
-        return super(EncryptedFieldMixin, self).to_python(value)
+        value = super(EncryptedFieldMixin, self).to_python(value)
+        if isinstance(value, str):
+            value = value.encode("utf-8")
+        return value
 
     def get_prep_value(self, value):
         value = super(EncryptedFieldMixin, self).get_prep_value(value)
